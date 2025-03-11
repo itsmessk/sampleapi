@@ -1,9 +1,10 @@
-import os
 from flask import Flask, jsonify
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
-# Sample author data
+# Sample author data with a detailed bio
 author_data = {
   "authors": [
     {
@@ -49,10 +50,10 @@ author_data = {
     ]
   }
 
+
 @app.route('/author', methods=['GET'])
 def get_author():
     return jsonify(author_data)
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Railway assigns a dynamic port
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True)
