@@ -6,6 +6,9 @@ CORS(app)  # Enable CORS for all routes
 
 # Author data
 authors = [
+    {"name": "Alice Johnson", "bio": "Bethany's books are incredibly inspiring and beautifully written!"},
+    {"name": "Michael Smith", "bio": "Her storytelling is captivating and keeps me hooked till the last page."},
+    {"name": "Samantha Lee", "bio": "I love how she brings characters to life with such depth and emotion."},
     {"name": "J.K. Rowling", "bio": "British author, best known for the Harry Potter series."},
     {"name": "George R.R. Martin", "bio": "Famous for 'A Song of Ice and Fire', which inspired 'Game of Thrones'."},
     {"name": "Agatha Christie", "bio": "English writer known for her detective novels featuring Poirot and Miss Marple."},
@@ -18,11 +21,11 @@ authors = [
     {"name": "Gabriel García Márquez", "bio": "Colombian novelist famous for 'One Hundred Years of Solitude'."}
 ]
 
-# Testimonials for Bethany Baerton
-testimonials = [
-    {"reader": "Alice Johnson", "testimonial": "Bethany's books are incredibly inspiring and beautifully written!"},
-    {"reader": "Michael Smith", "testimonial": "Her storytelling is captivating and keeps me hooked till the last page."},
-    {"reader": "Samantha Lee", "testimonial": "I love how she brings characters to life with such depth and emotion."},
+# bios for Bethany Baerton
+bios = [
+    {"name": "Alice Johnson", "bio": "Bethany's books are incredibly inspiring and beautifully written!"},
+    {"name": "Michael Smith", "bio": "Her storytelling is captivating and keeps me hooked till the last page."},
+    {"name": "Samantha Lee", "bio": "I love how she brings characters to life with such depth and emotion."},
 ]
 
 # Route to get all authors
@@ -47,18 +50,18 @@ def add_author():
         return jsonify({"message": "Author added successfully"}), 201
     return jsonify({"error": "Invalid data"}), 400
 
-# Route to get testimonials for Bethany Baerton
-@app.route('/testimonials', methods=['GET'])
-def get_testimonials():
-    return jsonify({"testimonials": testimonials})
+# Route to get bios for Bethany Baerton
+@app.route('/bios', methods=['GET'])
+def get_bios():
+    return jsonify({"bios": bios})
 
-# Route to add a testimonial for Bethany Baerton
-@app.route('/testimonials', methods=['POST'])
-def add_testimonial():
-    new_testimonial = request.json
-    if "reader" in new_testimonial and "testimonial" in new_testimonial:
-        testimonials.append(new_testimonial)
-        return jsonify({"message": "Testimonial added successfully"}), 201
+# Route to add a bio for Bethany Baerton
+@app.route('/bios', methods=['POST'])
+def add_bio():
+    new_bio = request.json
+    if "name" in new_bio and "bio" in new_bio:
+        bios.append(new_bio)
+        return jsonify({"message": "bio added successfully"}), 201
     return jsonify({"error": "Invalid data"}), 400
 
 if __name__ == '__main__':
